@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegIN_Galkins.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace RegIN_Galkins
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow mainWindow;
+        public User UserLogin = new User();
         public MainWindow()
         {
             InitializeComponent();
+            mainWindow = this;
+            OpenPage(new Pages.Login());
         }
+
+        public void OpenPage(Page page) => Animation.FrameDoubleAnimation(frame, page);
     }
 }
