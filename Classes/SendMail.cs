@@ -12,13 +12,24 @@ namespace RegIN_Galkins.Classes
     {
         public static void SendMessage(string Message, string To)
         {
-            var smtpClient = new SmtpClient("smtp.yandex.ru")
+            try
             {
-                Port = 587,
-                Credentials = new NetworkCredential("galkinnikita228@yandex.ru", "xxrfurohlcpolezj"),
-                EnableSsl = true,
-            };
-            smtpClient.Send("galkinnikita228@yandex.ru", To, "Проект RegIn", Message);
+                var smtpClient = new SmtpClient("smtp.yandex.ru")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("galkinnikita228@yandex.ru", "ngyfyrwxcwkoxyrr"),
+                    EnableSsl = true,
+                };
+
+                // Отправка письма
+                smtpClient.Send("galkinnikita228@yandex.ru", To, "Проект RegIn", Message);
+
+                Console.WriteLine("Письмо отправлено успешно!");
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine($"Ошибка при отправке письма: {ex.Message}");
+            }
         }
     }
 }
